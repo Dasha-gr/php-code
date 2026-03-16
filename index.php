@@ -275,6 +275,30 @@ try {
         echo "<br/>";
     }
 
+//    INSERT
+//
+//    $name_character = 'Tom';
+//
+//    $stmt = $pdo->prepare("INSERT INTO characters(name_character) VALUES(?)");
+//    $stmt->bindParam(1, $name_character);
+//    $stmt->execute();
+//
+//    1.DELETE
+//
+//    $stmt = $pdo->exec('DELETE FROM characters WHERE id = 9');
+//
+//    2.UPDATE
+//
+//    $stmt = $pdo->prepare("UPDATE `characters` SET `name_character` = :name_character WHERE `id` = :id");
+//    $stmt->execute(array('name_character' => 'Tom', 'id' => 7));
+
+
+    //3.Вытащить промежуточную таблицу
+
+//    $stmt = $pdo->query('SELECT characters.name_character, game_n.name_game FROM characters JOIN ');
+
+
+
 } catch (PDOException $e) {
     die('Подключение не удалось: ' . $e->getMessage());
 }
