@@ -190,63 +190,94 @@
 //print_r("Площадь круга:".$obj->pl_circle());
 
 
-class People{
-    public $name; // Имя
-    public $town; // Поселение
-    public $xp; // Хп
-    public $damage; //Урон
+// class People{
+//     public $name; // Имя
+//     public $town; // Поселение
+//     public $xp; // Хп
+//     public $damage; //Урон
 
 
-    function __construct($name, $town, $damage)
-    {
-        $this->name = $name;
-        $this->town = $town;
-        $this->xp = 100;
-        $this->damage = rand(0,20);
+//     function __construct($name, $town, $damage)
+//     {
+//         $this->name = $name;
+//         $this->town = $town;
+//         $this->xp = 100;
+//         $this->damage = rand(0,20);
+//     }
+
+//     function damage_voin($xp, $damage) //Урон воина
+//     {
+
+//     }
+// }
+
+
+// class Zhitel extends People{
+//     function __construct($name, $town)
+//     {
+//         $this->name = $name;
+//         $this->town = $town;
+//         $this->xp = 100;
+//     }
+// } //Zhitel
+
+// class Voin extends People{
+
+//     function __construct($name, $town)
+//     {
+//         $this->name = $name;
+//         $this->town = $town;
+//         $this->xp = 100;
+//     }
+
+// } //Voin
+
+// class Doctor extends People{
+//     public $hilks; //Хилка, лечение
+
+//     function __construct($name, $town, $hilks)
+//     {
+//         $this->name = $name;
+//         $this->town = $town;
+//         $this->xp = 100;
+//         $this->hilks = $hilks;
+//     }
+
+// } //Doctor
+
+// $zh_1 = new Zhitel("Боб", "Суманара");
+// $zh_2 = new Zhitel("Тод", "Анара")
+
+try {
+    $host = '127.0.0.1';
+    $db = 'game';
+    $user = 'root';
+    $pass = '';
+    $charset = 'utf8';
+
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $opt = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+    // Получение объекта PDO
+    $pdo = new PDO($dsn, $user, $pass, $opt);
+    var_dump($pdo);
+    echo "<br/>";
+
+    // Получение данных из таблицы student по полю name
+    $stmt = $pdo->query('SELECT * FROM characters');
+    var_dump($stmt);
+    echo "<br/>";
+    while ($row = $stmt->fetch()) {
+        echo $row['id'] . " " . $row['name_character'];
+        echo "<br/>";
     }
 
-    function damage_voin($xp, $damage) //Урон воина
-    {
-
-    }
+} catch (PDOException $e) {
+    die('Подключение не удалось: ' . $e->getMessage());
 }
-
-
-class Zhitel extends People{
-    function __construct($name, $town)
-    {
-        $this->name = $name;
-        $this->town = $town;
-        $this->xp = 100;
-    }
-} //Zhitel
-
-class Voin extends People{
-
-    function __construct($name, $town)
-    {
-        $this->name = $name;
-        $this->town = $town;
-        $this->xp = 100;
-    }
-
-} //Voin
-
-class Doctor extends People{
-    public $hilks; //Хилка, лечение
-
-    function __construct($name, $town, $hilks)
-    {
-        $this->name = $name;
-        $this->town = $town;
-        $this->xp = 100;
-        $this->hilks = $hilks;
-    }
-
-} //Doctor
-
-$zh_1 = new Zhitel("Боб", "Суманара");
-$zh_2 = new Zhitel("Тод", "Анара")
 
 
 
