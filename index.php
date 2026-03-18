@@ -248,32 +248,67 @@
 // $zh_1 = new Zhitel("Боб", "Суманара");
 // $zh_2 = new Zhitel("Тод", "Анара")
 
-try {
-    $host = '127.0.0.1';
-    $db = 'game';
-    $user = 'root';
-    $pass = '';
-    $charset = 'utf8';
 
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    $opt = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ];
-    // Получение объекта PDO
-    $pdo = new PDO($dsn, $user, $pass, $opt);
-    var_dump($pdo);
-    echo "<br/>";
 
-    // Получение данных из таблицы student по полю name
-    $stmt = $pdo->query('SELECT * FROM characters');
-    var_dump($stmt);
-    echo "<br/>";
-    while ($row = $stmt->fetch()) {
-        echo $row['id'] . " " . $row['name_character'];
-        echo "<br/>";
-    }
+//Взаимодействие с front
+
+if($_GET !== null) {
+
+        $host = '127.0.0.1';
+        $db = 'test1';
+        $user = 'root';
+        $pass = '';
+        $charset = 'utf8';
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+        $opt = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+        // Получение объекта PDO
+        $pdo = new PDO($dsn, $user, $pass, $opt);
+
+
+        $nickname = htmlspecialchars($_GET['nickname']);
+        $pass = htmlspecialchars($_GET['pass']);
+
+    $stmt = $pdo->prepare("INSERT INTO regbasa (nickname, pass) VALUES(?, ?)");
+    $stmt->bindParam(1, $nickname);
+    $stmt->bindParam(2, $pass);
+    $stmt->execute();
+
+    }else{
+        return false;
+        }
+
+
+// try {
+//     $host = '127.0.0.1';
+//     $db = 'game';
+//     $user = 'root';
+//     $pass = '';
+//     $charset = 'utf8';
+
+//     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+//     $opt = [
+//         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//         PDO::ATTR_EMULATE_PREPARES => false,
+//     ];
+//     // Получение объекта PDO
+//     $pdo = new PDO($dsn, $user, $pass, $opt);
+//     var_dump($pdo);
+//     echo "<br/>";
+
+//     // Получение данных из таблицы student по полю name
+//     $stmt = $pdo->query('SELECT * FROM characters');
+//     var_dump($stmt);
+//     echo "<br/>";
+//     while ($row = $stmt->fetch()) {
+//         echo $row['id'] . " " . $row['name_character'];
+//         echo "<br/>";
+//     }
 
 //    INSERT
 //
