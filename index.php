@@ -252,35 +252,35 @@
 
 //Взаимодействие с front
 
-if($_GET !== null) {
+// if($_GET !== null) {
 
-        $host = '127.0.0.1';
-        $db = 'test1';
-        $user = 'root';
-        $pass = '';
-        $charset = 'utf8';
+//         $host = '127.0.0.1';
+//         $db = 'test1';
+//         $user = 'root';
+//         $pass = '';
+//         $charset = 'utf8';
 
-        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-        $opt = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false,
-        ];
-        // Получение объекта PDO
-        $pdo = new PDO($dsn, $user, $pass, $opt);
+//         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+//         $opt = [
+//             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//             PDO::ATTR_EMULATE_PREPARES => false,
+//         ];
+//         // Получение объекта PDO
+//         $pdo = new PDO($dsn, $user, $pass, $opt);
 
 
-        $nickname = htmlspecialchars($_GET['nickname']);
-        $pass = htmlspecialchars($_GET['pass']);
+//         $nickname = htmlspecialchars($_GET['nickname']);
+//         $pass = htmlspecialchars($_GET['pass']);
 
-    $stmt = $pdo->prepare("INSERT INTO regbasa (nickname, pass) VALUES(?, ?)");
-    $stmt->bindParam(1, $nickname);
-    $stmt->bindParam(2, $pass);
-    $stmt->execute();
+//     $stmt = $pdo->prepare("INSERT INTO regbasa (nickname, pass) VALUES(?, ?)");
+//     $stmt->bindParam(1, $nickname);
+//     $stmt->bindParam(2, $pass);
+//     $stmt->execute();
 
-    }else{
-        return false;
-        }
+//     }else{
+//         return false;
+//         }
 
 
 // try {
@@ -334,10 +334,87 @@ if($_GET !== null) {
 
 
 
+
 } catch (PDOException $e) {
     die('Подключение не удалось: ' . $e->getMessage());
 }
 
+//if($_GET !== null){
+//
+//    try {
+//        $host = '127.0.0.1';
+//        $db = 'tehnikum';
+//        $user = 'root';
+//        $pass = '';
+//        $charset = 'utf8';
+//
+//        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+//        $opt = [
+//            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//            PDO::ATTR_EMULATE_PREPARES => false,
+//        ];
+//        // Получение объекта PDO
+//        $pdo = new PDO($dsn, $user, $pass, $opt);
+//
+//        // Получение данных из таблицы student по полю name
+//        $id = $_GET['id'];
+//        $stmt = $pdo->prepare("SELECT name FROM student WHERE id=?");
+//        $stmt->bindParam(1, $id);
+//        $stmt->execute();
+//
+//    } catch (PDOException $e) {
+//        die('Подключение не удалось: ' . $e->getMessage());
+//    }
+//
+//    $results = $stmt->fetchAll();
+//    $result = json_encode($results);
+//    echo $result;
+//}else{
+//    return false;
+//}
+
+//Взаимодействие с front
+
+//front
+
+    if($_GET !== null) {
+
+        $host = '127.0.0.1';
+        $db = 'decor_home';
+        $user = 'root';
+        $pass = '';
+        $charset = 'utf8';
+
+        $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+        $opt = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ];
+
+        // Получение объекта PDO
+        $pdo = new PDO($dsn, $user, $pass, $opt);
+
+
+        $fam = htmlspecialchars($_GET['fam']);
+        $name = htmlspecialchars($_GET['name']);
+        $ote = htmlspecialchars($_GET['ote']);
+        $phone = htmlspecialchars($_GET['phone']);
+        $email = htmlspecialchars($_GET['email']);
+
+
+    $stmt = $pdo->prepare("INSERT INTO form (fam, name, ote, phone, email) VALUES(?,?,?,?,?)");
+    $stmt->bindParam(1, $fam);
+    $stmt->bindParam(2, $name);
+    $stmt->bindParam(3, $ote);
+    $stmt->bindParam(4, $phone);
+    $stmt->bindParam(5, $email);
+    $stmt->execute();
+
+    }else{
+        return false;
+    }
 
 
 
